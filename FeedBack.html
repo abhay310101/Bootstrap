@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+</head>
+<body>
+    <h1>Feedback Form</h1>
+    
+    <!-- Feedback form -->
+    <form id="feedbackForm">
+        <label for="feedback">Your Feedback:</label><br>
+        <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea><br>
+        <button type="submit">Submit Feedback</button>
+    </form>
+
+    <!-- Feedback display -->
+    <div id="feedbackDisplay">
+        <h2>Feedback Received:</h2>
+        <ul id="feedbackList"></ul>
+        <p>Total Feedbacks: <span id="feedbackCount">0</span></p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var feedbackForm = document.getElementById("feedbackForm");
+            var feedbackList = document.getElementById("feedbackList");
+            var feedbackCount = document.getElementById("feedbackCount");
+            var feedbackCounter = 0;
+
+            // Function to handle form submission
+            feedbackForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                
+                // Get the feedback text
+                var feedbackText = document.getElementById("feedback").value;
+
+                // Display feedback on the webpage
+                displayFeedback(feedbackText);
+
+                // Increment feedback counter
+                feedbackCounter++;
+                feedbackCount.textContent = feedbackCounter;
+
+                // Clear the form
+                feedbackForm.reset();
+            });
+
+            // Function to display feedback on the webpage
+            function displayFeedback(feedback) {
+                var li = document.createElement("li");
+                li.textContent = feedback;
+                feedbackList.appendChild(li);
+            }
+        });
+    </script>
+</body>
+</html>
